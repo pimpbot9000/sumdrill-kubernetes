@@ -17,8 +17,6 @@ app.use(express.json())
 app.use(validateAPIKey(APIKey))
 
 
-console.log(process.env)
-
 if (process.env.NODE_ENV=="kubernetes") {
     // path is defined in kubernetes manifests
     app.use('/', router)
