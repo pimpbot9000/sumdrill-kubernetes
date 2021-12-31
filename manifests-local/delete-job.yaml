@@ -1,0 +1,26 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: delete-job
+  namespace: project
+spec:  
+  schedule: "15,30,45,0 * * * *"
+  jobTemplate:  
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: delete-job
+            image: pimpbot9000/delete-job:latest
+            imagePullPolicy: Always
+            env:
+            - name: URL
+              value: "http://backend-service-internal/scores"
+            - name: API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: dotenv
+                  key: API_KEY
+
+          

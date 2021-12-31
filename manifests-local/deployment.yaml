@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sumdrill-deployment
+  namespace: project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sumdrill
+  template:
+    metadata:
+      labels:
+        app: sumdrill
+    spec:
+      containers:
+        - name: test-box
+          image: ubuntu:18.04
+          command:
+            - sleep
+            - "3600"
+          imagePullPolicy: IfNotPresent
+
+        - name: frontend-container
+          image: pimpbot9000/sumdrill-frontend:latest
+          env:
+            - name: PORT
+              value: "3000"
+            - name: REACT_APP_API_URL
+              value: "/api/v1"
+            - name: REACT_APP_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: dotenv
+                  key: API_KEY
+
+        - name: backend-container
+          image: pimpbot9000/sumdrill-backend:latest
+          env:
+            - name: NODE_ENV
+              value: "kubernetes"
+            - name: BASE_URL
+              value: "/api/v1"
+            - name: PORT
+              value: "8080"
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_HOST
+              value: "postgres-service"
+            - name: API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: dotenv
+                  key: API_KEY
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dotenv
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: dotenv
+                  key: POSTGRES_USER
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: dotenv
+                  key: POSTGRES_DB

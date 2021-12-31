@@ -38,9 +38,11 @@ spec:
           image: pimpbot9000/sumdrill-backend:latest
           env:
           - name: NODE_ENV
-            value: "kubernetes"          
+            value: "kubernetes"                    
           - name: PORT
-            value: "8080"          
+            value: "8080"
+          - name: BASE_URL
+            value: "/api/v1/"
           - name: POSTGRES_PORT
             value: "5432"
           - name: POSTGRES_HOST

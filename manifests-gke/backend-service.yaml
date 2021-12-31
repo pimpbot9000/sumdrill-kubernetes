@@ -4,9 +4,9 @@ metadata:
   name: backend-service
   namespace: project
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
-    app: sumdrill # This is the app as declared in the deployment.
+    app: sumdrill # Pod
   ports:
     - port: 2345
       protocol: TCP
