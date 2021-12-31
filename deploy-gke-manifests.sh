@@ -8,5 +8,5 @@ kubectl apply -f manifests-gke/deployment.yaml
 kubectl apply -f manifests-gke/backend-service.yaml
 kubectl apply -f manifests-gke/backend-service-internal.yaml
 kubectl apply -f manifests-gke/frontend-service.yaml
-kubectl apply -f manifests-gke/ingress2.yaml
-#kubectl apply -f manifests-gke/delete-job.yaml
+kubectl apply -f manifests-gke/ingress.yaml
+kubectl apply -f manifests-gke/delete-job.yaml

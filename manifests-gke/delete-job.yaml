@@ -1,10 +1,10 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: delete-job
   namespace: project
 spec:  
-  schedule: "15,30,45,0 * * * *"
+  schedule: "0 0 * * *"
   jobTemplate:  
     spec:
       template:
@@ -16,7 +16,7 @@ spec:
             imagePullPolicy: Always
             env:
             - name: URL
-              value: "http://backend-service-internal/scores"
+              value: "http://backend-service-internal/api/v1/scores"
             - name: API_KEY
               valueFrom:
                 configMapKeyRef:

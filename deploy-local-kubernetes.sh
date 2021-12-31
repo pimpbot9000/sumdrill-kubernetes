@@ -9,4 +9,4 @@ kubectl apply -f manifests-local/backend-service.yaml
 kubectl apply -f manifests-local/backend-service-internal.yaml
 kubectl apply -f manifests-local/frontend-service.yaml
 kubectl apply -f manifests-local/ingress.yaml
-#kubectl apply -f manifests-local/delete-job.yaml
+kubectl apply -f manifests-local/delete-job.yaml

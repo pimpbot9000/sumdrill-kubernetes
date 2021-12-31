@@ -16,7 +16,7 @@ spec:
             imagePullPolicy: Always
             env:
             - name: URL
-              value: "http://backend-service-internal/scores"
+              value: "http://backend-service-internal/api/v1/scores"
             - name: API_KEY
               valueFrom:
                 configMapKeyRef:

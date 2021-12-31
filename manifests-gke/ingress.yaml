@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: sumdrill-ingress
   namespace: project
-  annotations:
-    traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
+#  annotations:
+#    traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
 spec:
   rules:
   - http:
