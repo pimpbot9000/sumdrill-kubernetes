@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sumdrill-gke",
+  "private_key_id": "7fa104438ccb5839ca42e8bad6a8861205424d0f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCrB9h4Gi2RcYL5\nugxAy9reIt24CGuh2ra58gPV5OZHCs045uZfuQgNy/STeit06/qacV78YGPbQPD/\nIcSGncLlt1alvMUVlHxTydae03MRyuzXJkHwNTOYI0nn/fY2mhA//c5nYkue+eQN\nTnHsACSZdA3EQQL2iyY4Zur5WbQZ6YgHeaDNu7fkTACLiqeRUPlB5yJGe++tjolQ\nWeklrLpw2gkU9ROCKNJKVR9r90UCIAvbSWNsF999Wz6H0lrq8J45H/pWIiqBXTkG\nIkRKpkAiVVpZcg/HNEqnmvn0mXdjYl29M7owUFUNxtnYJsNf+ZwZDTG1pAC7XV7g\niICqol81AgMBAAECggEAGn7U52hAynEgFgFfQBOEpNiYahft2q1oFN7b/sEe9n8D\nI29L3aTrzT1dNpKc1FhxYocxLJ5fIdqJ6zBnQmaCyLUSGItpqcnux8kzNTgzMZyy\n+7Kq0ORhCY7f9m9muvc7kLpIRUZaSjbSwEf4iJPOF7K9pjtfEuQkJ+UzvizKJKBC\nWW8DPLiJf2oPVlIq48Tzo8qErfKF9OOI+oBh61Ydhx/TMtl9qf6i/N7IhlO6iul4\nMJkucAHL2FFHhCVw7vcMTHetXziwInYRwhn3FOJg1nGwbn11+7ozcIrLuMXpmoWy\nnJ351FZdHvIWicXIAHkXRDUANeD78GUYATfTBkAa8QKBgQDv2Fnx2OPdy7GrjwLH\n/9xQZy30qthq3W/QWsqdmiqCUUKcpmxXUzZG0NgMg8yjqKhVz51VCRaCy/DhuRRf\nLVWUxbzd4bKL8LzRDm0b1mH/SGV/PekBNsBlYW4YXA26XdpksEppgAluu0dETAu5\nETiJlMoDUXociJ3KSExjczg50QKBgQC2jO0sfSqm56cxBtsqTN54O+qRh2lM1pZ7\n1mdtFnkdIZS0b0XvL+RHq/MBno08d7gE3ZBObX0iA+V6awGBtz1E1M/FswycUsgz\nxMFjj8ITe0+uhfA8mHQrM4xYIqtcYypIohYkaOOMR09xcXILIIOeIuazmRdLMpcG\nYAXLlN7EJQKBgQCJIstK3Rhs2OrdjQeqE0GFN3mvS4Aymio0l7UCKAPmP1A3AXEw\n/QMrun3Nqg54BRc6+VqcJHYak0FHzus3AFTOm8FBnKraGOvdHMKGCC5AKMTf3CY9\n63BWhz7L7tZqmP8mUyY47Fx4U9yL0G9jgdUx1UEsZInNhs+xuWTz+A1OAQKBgATf\n4n1rojXuvaIrgrKwdshTIUJdkUxB9qa75OsezIEgom3nAsEOUFQxnT2P1EmnELzg\nhbfyaIL+A6SvMs0Z7YLnA91NmKqb80iemmNkNVR72HbakL2tfHyi1b6MvnKrGzfx\nTBIQ0vKt/MsUsmzlo14XpH1rOxoA8dNzwPPct84ZAoGAN/NsYUXCIV16nzb+rBgG\nwQOeVILC/ZO1ERD2DE8j58flfh59JiiiHEimY8r/gjQLkd+hfuGuKGaKSl+lGAAJ\nq7wPTCqJL3zeEJQcQIVXkMyGY+VLBkq6uJvDaM/VmxkQTJluUDsJ2Cn8sW3EtXUZ\nvEVjHGkUZby96znqUDGQfPg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "kubernetes-github-actions-2@sumdrill-gke.iam.gserviceaccount.com",
+  "client_id": "113123068628263197755",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kubernetes-github-actions-2%40sumdrill-gke.iam.gserviceaccount.com"
+}
