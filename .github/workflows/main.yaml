@@ -7,7 +7,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: summdrill-cluster
+  GKE_CLUSTER: sumdrill-cluster
   GKE_ZONE: europe-north1-b
   FRONTEND_IMAGE: sumdrill-frontend
   BACKEND_IMAGE: sumdrill-backend
@@ -38,12 +38,22 @@ jobs:
 
     - run: gcloud --quiet auth configure-docker
     - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_ZONE"
+
     - name: Build frontend image
       run: |-
         docker build \
           --tag "gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" \
           -f ./frontend/Dockerfile.production ./frontend
     - name: Publish frontend image
+      run: |-
+        docker push "gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+    
+    - name: Build backend image
+      run: |-
+        docker build \
+          --tag "gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" \
+          -f ./backend/Dockerfile ./backend
+    - name: Publish backend image
       run: |-
         docker push "gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
 
