@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - postgres/persistent-volume-claim.yaml
+  - postgres/postgres.yaml
+  - postgres/postgres-service.yaml
+  - deployment.yaml
+  - backend-service.yaml
+  - backend-service-internal.yaml
+  - frontend-service.yaml
+  - ingress.yaml
+  - delete-job.yaml
+
+images:
+  - name: gcr.io/PROJECT_ID/FRONTEND_IMAGE
+    newName: pimpbot9000/sumdrill-frontend:latest
+  - name: gcr.io/PROJECT_ID/BACKEND_IMAGE
+    newName: pimpbot9000/sumdrill-backend:latest

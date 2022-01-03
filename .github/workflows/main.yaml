@@ -1,0 +1,40 @@
+name: Release to GKE
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: summdrill-cluster
+  GKE_ZONE: europe-north1-b
+  FRONTEND_IMAGE: sumdrill-frontend
+  BACKEND_IMAGE: sumdrill-backend
+
+jobs:
+  build-publish-deploy:
+    name: Build, Publish and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        project_id: ${{ secrets.GKE_PROJECT }}
+        service_account_key: ${{ secrets.GKE_SA_KEY }}
+        export_default_credentials: true
+    - run: gcloud --quiet auth configure-docker
+    - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+    - name: Build frontend image
+      run: |-
+        docker build \
+          --tag "gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" \
+          -f ./frontend/Dockerfile.production ./frontend
+    - name: Publish frontend image
+      run: |-
+        docker push "gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+
+    
