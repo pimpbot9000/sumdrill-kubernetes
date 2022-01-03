@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
 
         - name: frontend-container
-          image: gcr.io/PROJECT_ID/FRONTEND_IMAGE
+          image: FRONTEND_IMAGE
           env:
           - name: PORT
             value: "3000"
@@ -35,7 +35,7 @@ spec:
                 key: API_KEY          
 
         - name: backend-container
-          image: gcr.io/PROJECT_ID/FRONTEND_IMAGE
+          image: BACKEND_IMAGE
           env:
           - name: NODE_ENV
             value: "kubernetes"                    

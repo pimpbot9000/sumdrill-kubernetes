@@ -14,7 +14,7 @@ resources:
   - manifests-gke/delete-job.yaml
 
 images:
-  - name: gcr.io/PROJECT_ID/FRONTEND_IMAGE
+  - name: FRONTEND_IMAGE
     newName: pimpbot9000/sumdrill-frontend:latest
-  - name: gcr.io/PROJECT_ID/BACKEND_IMAGE
+  - name: BACKEND_IMAGE
     newName: pimpbot9000/sumdrill-backend:latest
