@@ -35,7 +35,7 @@ spec:
                 key: API_KEY          
 
         - name: backend-container
-          image: BACKEND/IMAGE
+          image: gcr.io/PROJECT_ID/FRONTEND_IMAGE
           env:
           - name: NODE_ENV
             value: "kubernetes"                    
