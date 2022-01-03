@@ -61,6 +61,8 @@ jobs:
       run: |-
         kustomize edit set image gcr.io/PROJECT_ID/FRONTEND_IMAGE=gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
         kustomize edit set image gcr.io/PROJECT_ID/BACKEND_IMAGE=gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
-        kustomize build .
+        kustomize build . | kubectl apply -f -
+        kubectl rollout status deployment sumdrill-deployment -n project
+        kubectl get services -n project
 
     
