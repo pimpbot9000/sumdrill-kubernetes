@@ -11,6 +11,7 @@ env:
   GKE_ZONE: europe-north1-b
   FRONTEND_IMAGE: sumdrill-frontend
   BACKEND_IMAGE: sumdrill-backend
+  DEPLOYMENT: sumdrill-deployment
 
 jobs:
   build-publish-deploy:
@@ -30,12 +31,7 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v0'
 
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
-    
-    - name: 'List clusters'
-      run: 'gcloud container clusters list'
-
+      # This will register gcloud as the credential helper for all Google-supported Docker registries
     - run: gcloud --quiet auth configure-docker
     - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_ZONE"
 
@@ -61,10 +57,14 @@ jobs:
     
     - name: Deploy
       run: |-
+        kubectl create namespace ${GITHUB_REF#refs/heads/} || true
+        kubectl config set-context --current --namespace=${GITHUB_REF#refs/heads/}
+        kustomize edit set namespace ${GITHUB_REF#refs/heads/}
         kustomize edit set image FRONTEND_IMAGE=gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
-        kustomize edit set image BACKEND_IMAGE=gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
-        kustomize build . | kubectl apply -f -
-        
-        kubectl get services -n project
+        kustomize edit set image BACKEND_IMAGE=gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA     
+        kubectl apply -k .
+        kubectl rollout status deployment $DEPLOYMENT -n project
+        kubectl get ingress -n project
 
+# or kustomize build . | kubectl apply -f -
     
