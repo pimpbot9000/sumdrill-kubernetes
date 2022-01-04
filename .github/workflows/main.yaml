@@ -21,7 +21,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Set up Cloud SDK
+    - name: Authenticate Cloud SDK
       uses: google-github-actions/auth@v0
       with:
         project_id: ${{ secrets.GKE_PROJECT }}
@@ -44,6 +44,7 @@ jobs:
         docker build \
           --tag "gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" \
           -f ./frontend/Dockerfile.production ./frontend
+
     - name: Publish frontend image
       run: |-
         docker push "gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
@@ -53,6 +54,7 @@ jobs:
         docker build \
           --tag "gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" \
           -f ./backend/Dockerfile ./backend
+
     - name: Publish backend image
       run: |-
         docker push "gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
@@ -62,7 +64,7 @@ jobs:
         kustomize edit set image FRONTEND_IMAGE=gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
         kustomize edit set image BACKEND_IMAGE=gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
         kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment sumdrill-deployment -n project
+        
         kubectl get services -n project
 
     
