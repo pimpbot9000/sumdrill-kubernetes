@@ -63,8 +63,8 @@ jobs:
         kustomize edit set image FRONTEND_IMAGE=gcr.io/$PROJECT_ID/$FRONTEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
         kustomize edit set image BACKEND_IMAGE=gcr.io/$PROJECT_ID/$BACKEND_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA     
         kubectl apply -k .
-        kubectl rollout status deployment $DEPLOYMENT -n project
-        kubectl get ingress -n project
+        kubectl rollout status deployment $DEPLOYMENT
+        kubectl get ingress
 
 # or kustomize build . | kubectl apply -f -
     
