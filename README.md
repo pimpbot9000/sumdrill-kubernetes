@@ -18,6 +18,10 @@ Run script ```create-gke-cluster.sh``` to create cluster and ```deploy-gke-manif
 
 Whenever there's a push to master branch images gets redeployend among with manifests under the namespace ```master```
 
+### To see it in action
+
+[Click me](http://34.110.144.164/)
+
 #### Notes
 
 Fro github actions ```Kubernetes Engine Service Agent``` and ```Storage Admin``` are required for service account roles.
