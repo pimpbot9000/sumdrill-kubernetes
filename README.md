@@ -1,6 +1,6 @@
 # Sumdrill with Kubernetes
 
-Simple web app (frontend + backend combo) deployed to kubernetes for absolutely no other reason than to get familiar with kubernetes.
+Simple web app (frontend + backend combo) deployed to GKE for absolutely no other reason than to get familiar with kubernetes.
 
 ### Development
 
