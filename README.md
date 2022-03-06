@@ -16,7 +16,7 @@ Run script ```create-gke-cluster.sh``` to create cluster and ```deploy-gke-manif
 
 ### CI/CD
 
-Whenever there's a push to master branch images gets redeployend among with manifests under the namespace ```master```
+Whenever there's a push to master branch images gets redeployed under the namespace ```master```
 
 ### To see it in action
 
