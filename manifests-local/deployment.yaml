@@ -4,7 +4,7 @@ metadata:
   name: sumdrill-deployment
   namespace: project
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: sumdrill
@@ -13,19 +13,25 @@ spec:
       labels:
         app: sumdrill
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: network
+                operator: Exists
+                
       containers:
         - name: test-box
           image: ubuntu:18.04
           command:
             - sleep
-            - "3600"
+            - "infinity"
           imagePullPolicy: IfNotPresent
 
         - name: frontend-container
           image: pimpbot9000/sumdrill-frontend:latest
           env:
-            - name: PORT
-              value: "3000"
             - name: REACT_APP_API_URL
               value: "/api/v1"
             - name: REACT_APP_API_KEY

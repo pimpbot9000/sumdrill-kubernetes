@@ -23,6 +23,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.development
+    environment:
+      - PORT=3000
+      - REACT_APP_API_URL=api/v1
+      - REACT_APP_API_KEY=swordfish
     volumes:
       - ./frontend:/usr/src/app
     ports:

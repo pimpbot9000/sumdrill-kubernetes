@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: headless-svc
+  namespace: project
+  labels:
+    app: sumdrilli
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: sumdrill

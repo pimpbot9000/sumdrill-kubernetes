@@ -24,5 +24,19 @@ Whenever there's a push to master branch images gets redeployed under the namesp
 
 #### Notes
 
-Fro github actions ```Kubernetes Engine Service Agent``` and ```Storage Admin``` are required for service account roles.
+For github actions ```Kubernetes Engine Service Agent``` and ```Storage Admin``` are required for service account roles.
+
+Shell into specific container 
+```kubectl exec -it -n project test-deployment-7498dd976-g4d98 --container="test-boxi" -- /bin/bash```
+With container not specified will exec into first container.
+
+Busybox: ```kubectl exec -it busybox1 -- wget -qO - http://frontend-service.project:3456```
+
+Label nodes: ```kubectl label nodes k3d-k3s-default-agent-1 network=good```
+Remove label: ```kubectl label nodes k3d-k3s-default-agent-1 network-```
+
+In affinity/anti-affinity operators ```Exists``` or ```DoesNotExist``` checks if the key exists or not. Value should not be specified.
+
+
+
 
