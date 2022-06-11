@@ -17,10 +17,18 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: network
-                operator: Exists
-                
+              # Note: if there are multiple matchExpressions one must be satisfied
+              # If the are multiple keys for matchExpressions all must be satisfied
+              - matchExpressions:
+                  - key: network
+                    operator: In
+                    values:
+                      - good
+                  - key: disk-type
+                    operator: In
+                    values:
+                      - ssd
+
       containers:
         - name: test-box
           image: ubuntu:18.04

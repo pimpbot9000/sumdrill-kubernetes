@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: dotenv
   namespace: project
-data:  
+data:
   POSTGRES_DB: "postgres"
   POSTGRES_PASSWORD: "swordfish"
   POSTGRES_USER: "admin"

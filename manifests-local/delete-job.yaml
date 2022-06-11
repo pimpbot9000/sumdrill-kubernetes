@@ -3,24 +3,22 @@ kind: CronJob
 metadata:
   name: delete-job
   namespace: project
-spec:  
+spec:
   schedule: "15,30,45,0 * * * *"
-  jobTemplate:  
+  jobTemplate:
     spec:
       template:
         spec:
           restartPolicy: Never
           containers:
-          - name: delete-job
-            image: pimpbot9000/delete-job:latest
-            imagePullPolicy: Always
-            env:
-            - name: URL
-              value: "http://backend-service-internal/api/v1/scores"
-            - name: API_KEY
-              valueFrom:
-                configMapKeyRef:
-                  name: dotenv
-                  key: API_KEY
-          
-          
+            - name: delete-job
+              image: pimpbot9000/delete-job:latest
+              imagePullPolicy: Always
+              env:
+                - name: URL
+                  value: "http://backend-service-internal/api/v1/scores"
+                - name: API_KEY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: dotenv
+                      key: API_KEY

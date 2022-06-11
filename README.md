@@ -20,7 +20,7 @@ Whenever there's a push to master branch images gets redeployed under the namesp
 
 ### To see it in action
 
-[Click me](http://34.110.144.164/)
+Not deployed atm. GKE is really expensive!!
 
 #### Notes
 
@@ -30,12 +30,17 @@ Shell into specific container
 ```kubectl exec -it -n project test-deployment-7498dd976-g4d98 --container="test-boxi" -- /bin/bash```
 With container not specified will exec into first container.
 
-Busybox: ```kubectl exec -it busybox1 -- wget -qO - http://frontend-service.project:3456```
+Busybox (you must deploy busybox first, duh): ```kubectl exec -it busybox1 -- wget -qO - http://frontend-service.project:3456```
 
 Label nodes: ```kubectl label nodes k3d-k3s-default-agent-1 network=good```
 Remove label: ```kubectl label nodes k3d-k3s-default-agent-1 network-```
 
 In affinity/anti-affinity operators ```Exists``` or ```DoesNotExist``` checks if the key exists or not. Value should not be specified.
+
+Get resource as yaml
+```kubectl get deployment sumdrill-deployment -n project -o jsonpath='{.spec.template.spec.containers[*].name}```
+Get resource the whole shebang as yaml (in nice format):
+```kubectl get deployment sumdrill-deployment -n project -o=json```
 
 
 
