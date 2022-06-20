@@ -19,5 +19,5 @@ app.use(validateAPIKey(APIKey))
 app.use('/', baseRouter) // healthcheck for Kubernetes
 app.use(path.join(BASE_URL, '/scores'), scoresRouter)
 app.use(path.join(BASE_URL, '/identity'), identityRouter)
-
+console.log(process.env.API_KEY)
 app.listen(PORT, () => console.log("Server is listening to port:", PORT))

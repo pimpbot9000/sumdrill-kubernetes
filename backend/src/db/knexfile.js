@@ -59,7 +59,8 @@ module.exports = {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DB,
       user: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD
+      password: process.env.POSTGRES_PASSWORD,
+      ssl: { rejectUnauthorized: false }
     },
     pool: {
       min: 2,

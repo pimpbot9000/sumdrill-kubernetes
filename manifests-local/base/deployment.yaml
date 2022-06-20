@@ -13,21 +13,21 @@ spec:
       labels:
         app: sumdrill
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              # Note: if there are multiple matchExpressions one must be satisfied
-              # If the are multiple keys for matchExpressions all must be satisfied
-              - matchExpressions:
-                  - key: network
-                    operator: In
-                    values:
-                      - good
-                  - key: disk-type
-                    operator: In
-                    values:
-                      - ssd
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #         # Note: if there are multiple matchExpressions one must be satisfied
+      #         # If the are multiple keys for matchExpressions all must be satisfied
+      #         - matchExpressions:
+      #             - key: network
+      #               operator: In
+      #               values:
+      #                 - good
+      #             - key: disk-type
+      #               operator: In
+      #               values:
+      #                 - ssd
 
       containers:
         - name: test-box
@@ -60,12 +60,15 @@ spec:
             - name: POSTGRES_PORT
               value: "5432"
             - name: POSTGRES_HOST
-              value: "postgres-service"
-            - name: API_KEY
               valueFrom:
                 configMapKeyRef:
                   name: dotenv
-                  key: API_KEY
+                  key: POSTGRES_HOST
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: api-key
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:

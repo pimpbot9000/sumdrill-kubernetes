@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dotenv
+  namespace: project
+data:
+  POSTGRES_DB: "demo"
+  POSTGRES_PASSWORD: "CIPbJMLWm9Ho2Ti1z0RkQXgGpYiCmDmjHoksOCzFRvtpVCU8YjsQWWXbdn2ODi5o"
+  POSTGRES_USER: "demouser"
+  POSTGRES_HOST: "postgres-demo-cluster.postgres-demo"
+  API_KEY: "swordfish"
